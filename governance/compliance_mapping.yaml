@@ -1,1 +1,18 @@
-# Placeholder governance mapping
+# Example compliance mapping for Responsible AI
+risk_classification: high-risk
+requires_human_review: true
+audit_logging: enabled
+bias_evaluation: required
+hallucination_detection: required
+incident_response_plan: documented
+
+frameworks:
+  EU_AI_Act:
+    - Risk classification
+    - Human oversight
+    - Transparency & documentation
+  NIST_AI_RMF:
+    - Govern: policies & roles
+    - Map: context & risks
+    - Measure: metrics & evaluations
+    - Manage: continuous monitoring
