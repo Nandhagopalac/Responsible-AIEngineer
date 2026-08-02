@@ -12,10 +12,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.10'
 
@@ -53,13 +53,25 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      uses: docker/setup-buildx-action@v3
+
+    - name: Verify secrets are set
+      run: |
+        if [ -z "${{ secrets.DOCKERHUB_USERNAME }}" ]; then
+          echo "ERROR: DOCKERHUB_USERNAME secret is not set"
+          exit 1
+        fi
+        if [ -z "${{ secrets.DOCKERHUB_TOKEN }}" ]; then
+          echo "ERROR: DOCKERHUB_TOKEN secret is not set"
+          exit 1
+        fi
+        echo "Secrets are present."
 
     - name: Log in to Docker Hub
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
