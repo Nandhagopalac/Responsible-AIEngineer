@@ -1,10 +1,15 @@
 # Placeholder for audit report generation
 import yaml
 
-def generate_report(yaml_file="compliance_mapping.yaml"):
+import yaml
+import os
+
+def generate_report(yaml_file=None):
+    if yaml_file is None:
+        yaml_file = os.path.join(os.path.dirname(__file__), "compliance_mapping.yaml")
+
     with open(yaml_file, "r") as f:
         compliance = yaml.safe_load(f)
-
     print("=== AI Governance Compliance Report ===")
     print(f"Risk Classification: {compliance['risk_classification']}")
     print(f"Requires Human Review: {compliance['requires_human_review']}")
