@@ -24,6 +24,17 @@ BASE_ATTACKS = [
 #     r"(violent|harm yourself|kill)"
 # ]
 
+import json
+
+def run_fuzz_tests():
+    with open("redteam/adversarial_prompts.json", "r") as f:
+        prompts = json.load(f)
+
+    print("Fuzz Testing Results:")
+    for attack in prompts:
+        safe = "ignore" not in attack.lower()
+        print(f"- {attack} | Safe: {safe}")
+
 
 def mutate_prompt(prompt: str) -> str:
     """Randomly mutate a prompt to simulate fuzzing."""
