@@ -71,4 +71,4 @@ jobs:
 
     - name: Run container for validation
       run: |
-        docker run --rm ghcr.io/${{ github.repository }}/responsible-ai:latest
+        docker run --rm ghcr.io/${{ github.repository_owner }}/responsible-aiengineer/responsible-ai:latest
