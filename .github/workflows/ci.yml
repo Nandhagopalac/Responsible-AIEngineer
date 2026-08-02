@@ -64,11 +64,14 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build and push Docker image
+    - name: Build and push Docker image (lowercase repo name)
       run: |
-        docker build -t ghcr.io/${{ github.repository_owner }}/responsible-aiengineer/responsible-ai:latest .
-        docker push ghcr.io/${{ github.repository_owner }}/responsible-aiengineer/responsible-ai:latest
+        IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/responsible-aiengineer/responsible-ai:latest
+        echo "Building image: $IMAGE_NAME"
+        docker build -t $IMAGE_NAME .
+        docker push $IMAGE_NAME
 
     - name: Run container for validation
       run: |
-        docker run --rm ghcr.io/${{ github.repository_owner }}/responsible-aiengineer/responsible-ai:latest
+        IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/responsible-aiengineer/responsible-ai:latest
+        docker run --rm $IMAGE_NAME
