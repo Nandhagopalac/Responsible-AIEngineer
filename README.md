@@ -22,7 +22,7 @@ Add __init__.py files to each folder (guardrails, redteam, evaluation, governanc
 
 ▶️ Running the Project
 Run the full pipeline:
-
+<!-- . -->
 bash
 python main.py
 Run individual modules:
