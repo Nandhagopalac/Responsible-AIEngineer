@@ -1,0 +1,16 @@
+# Core scientific stack
+numpy==1.26.4
+scikit-learn==1.5.1
+
+# Fairness evaluation
+fairlearn==0.9.0
+
+# YAML parsing for governance reports
+PyYAML==6.0.2
+
+# Logging and JSON handling (built-in, but good practice to include)
+# json and datetime are standard library, no need to list
+
+# Optional: testing and linting
+pytest==8.2.2
+flake8==7.1.1
