@@ -64,14 +64,17 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build and push Docker image (lowercase repo name)
+    - name: Set lowercase image name
       run: |
-        IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/responsible-aiengineer/responsible-ai:latest
+        OWNER_LC=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+        echo "IMAGE_NAME=ghcr.io/${OWNER_LC}/responsible-aiengineer/responsible-ai:latest" >> $GITHUB_ENV
+
+    - name: Build and push Docker image
+      run: |
         echo "Building image: $IMAGE_NAME"
         docker build -t $IMAGE_NAME .
         docker push $IMAGE_NAME
 
     - name: Run container for validation
       run: |
-        IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/responsible-aiengineer/responsible-ai:latest
         docker run --rm $IMAGE_NAME
